@@ -1,0 +1,24 @@
+name: spotifind
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas>=2.0.0
+  - numpy>=1.24.0
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  - plotly>=5.14.0
+  - shiny>=0.6.0
+  - jupyter>=1.0.0
+  - ipykernel>=6.22.0
+  - notebook>=6.5.0
+  - requests>=2.28.0
+  - pytest>=7.3.0
+  - black>=23.0.0
+  - flake8>=6.0.0
+  - pip>=23.0.0
+  - pip:
+    - shinywidgets>=0.2.0
+    - shinyswatch>=0.4.0
+    - libsass==0.23.0
