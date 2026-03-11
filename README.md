@@ -12,7 +12,7 @@ The main dashboard can be accessed [here](https://019cd979-0869-b30b-4ea7-3d34f4
 
 Rahiq Raees, Nguyen Nguyen, Shuhang Li, Jose Davila
 
-If you are interested in contributing to this dashboard, please review the [CONTRIBUTING.md](CONTRIBUTING.md) document for more information.
+If you are interested in contributing to this dashboard, please review the [CONTRIBUTING.md](CONTRIBUTING.md) document for contributing guide and instruction how to set up the app locally.
 
 ## Dataset Acknowledgement
 
