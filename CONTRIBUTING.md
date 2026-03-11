@@ -14,7 +14,7 @@ There are many ways to contribute, including:
 
 ## General contributing guide
 
-1.  Fork the repository: https://github.com/UBC-MDS/DSCI-532_2026_37_Spotifind.git
+1.  Fork the repository: https://github.com/nguyen6uyen/Spotifind-R-Nguyen
 
 2.  Clone the fork locally using:
 
