@@ -26,16 +26,16 @@ Then please cd into the root of the repo by:
 cd DSCI-532_2026_37_Spotifind
 ```
 
-3.  Create the virtual environment with:
+3.  Open R on terminal
 
 ``` bash
-conda env create -f environment.yml
+R
 ```
 
-4.  Once the environment is created, activate it with:
+4.  Install Dependencies:
 
 ``` bash
-conda activate spotifind
+install.packages(c("shiny", "bslib", "dplyr", "ggplot2"))
 ```
 
 5. Create a new branch for your feature or bug fix.
@@ -43,7 +43,7 @@ conda activate spotifind
 6.  Run the app locally with:
 
 ``` bash
-shiny run src/app.py # → http://127.0.0.1:8000
+shiny::runApp("app.R")
 ```
 
 7. Submit a pull request with a clear description of your changes
