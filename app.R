@@ -227,7 +227,6 @@ server <- function(input, output, session) {
         target     = "row",
         backgroundColor = styleInterval(69.99, c("white", "#d4edda"))
       )
-  })
   
 output$tbl_top_genre <- renderTable({
   data <- filtered_df()
