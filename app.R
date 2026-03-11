@@ -90,7 +90,7 @@ ui <- page_fluid(
     layout_columns(
       card(
         card_header("Results Table"),
-        tableOutput("tbl_results")
+        tableOutput("tbl_results"),
         full_screen = TRUE,
       ),
       card(
