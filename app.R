@@ -2,7 +2,6 @@ library(shiny)
 library(bslib)
 library(dplyr)
 library(ggplot2)
-library(DT)
 
 # Data
 df <- read.csv("data/raw/spotify_songs.csv", stringsAsFactors = FALSE)
@@ -91,12 +90,12 @@ ui <- page_fluid(
     layout_columns(
       card(
         card_header("Results Table"),
-        DTOutput("tbl_results"),
+        tableOutput("tbl_results")
         full_screen = TRUE,
       ),
       card(
         card_header("Top Genres"),
-        DTOutput("tbl_top_genre"),
+        tableOutput("tbl_top_genre")
       ),
       col_widths = c(8, 4),
     ),
@@ -201,18 +200,19 @@ server <- function(input, output, session) {
     }
   })
   
-  output$tbl_results <- renderDT({
-    data <- filtered_df() |>
+  output$tbl_results <- renderTable({
+    filtered_df() |>
       select(
-        Song        = track_name,
-        Artist      = track_artist,
-        Album       = track_album_name,
-        Released    = track_album_release_date,
-        Genre       = playlist_genre,
-        Popularity  = track_popularity
+        Song       = track_name,
+        Artist     = track_artist,
+        Album      = track_album_name,
+        Released   = track_album_release_date,
+        Genre      = playlist_genre,
+        Popularity = track_popularity
       ) |>
       arrange(desc(Popularity))
-    
+  })
+  
     # Row indices (1-based) of high-popularity songs
     high_pop <- which(data$Popularity >= 70)
     
@@ -229,18 +229,13 @@ server <- function(input, output, session) {
       )
   })
   
-  output$tbl_top_genre <- renderDT({
-    data <- filtered_df()
-    if (nrow(data) == 0) {
-      top <- data.frame(Genre = character(0), Count = integer(0))
-    } else {
-      top <- data |>
-        count(Genre = playlist_genre, name = "Count") |>
-        arrange(desc(Count)) |>
-        head(6)
-    }
-    datatable(top, rownames = TRUE, options = list(dom = "t", ordering = FALSE))
-  })
-}
+output$tbl_top_genre <- renderTable({
+  data <- filtered_df()
+  if (nrow(data) == 0) return(data.frame(Genre = character(0), Count = integer(0)))
+  data |>
+    count(Genre = playlist_genre, name = "Count") |>
+    arrange(desc(Count)) |>
+    head(6)
+})
 
 shinyApp(ui, server)
