@@ -2,11 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from shiny import App, reactive, render, ui
 
-# =============================================================================
-# RAHIQ — Data loading and sidebar filter controls
-# Branch: feat/filter-controls
-# =============================================================================
-
 # ── Data ──────────────────────────────────────────────────────────────────────
 df = pd.read_csv("data/raw/spotify_songs.csv")
 df = df.drop_duplicates(subset="track_id")
@@ -16,7 +11,6 @@ df["duration_s"] = (df["duration_ms"] / 1000).round(1)
 app_ui = ui.page_fluid(
 
     # JOSE — Styled dashboard header using Bootstrap utilities (no inline CSS needed)
-    # Branch: feat/kpi-layout
     ui.div(
         ui.div(
             ui.h1("🎵 Spotifind", class_="mb-0 fs-3"),
@@ -64,7 +58,6 @@ app_ui = ui.page_fluid(
         ),
 
         # JOSE — KPI value boxes row with Bootstrap themes
-        # Branch: feat/kpi-layout
         ui.layout_columns(
             ui.value_box(
                 "Songs Found",
@@ -88,7 +81,6 @@ app_ui = ui.page_fluid(
         ),
 
         # NGUYEN — Mood Map card
-        # Branch: feat/mood-map
         ui.card(
             ui.card_header("Mood Map — Valence vs Energy"),
             ui.output_plot("plot_mood_map", height="400px"),
@@ -96,7 +88,6 @@ app_ui = ui.page_fluid(
         ),
 
         # SHUHANG — Results Table and Top Genres cards
-        # Branch: feat/tables
         ui.layout_columns(
             ui.card(
                 ui.card_header("Results Table"),
@@ -111,7 +102,6 @@ app_ui = ui.page_fluid(
         ),
 
         # JOSE — Footer
-        # Branch: feat/kpi-layout
         ui.hr(),
         ui.p(
             ui.HTML(
@@ -130,10 +120,6 @@ app_ui = ui.page_fluid(
 # ── Server ────────────────────────────────────────────────────────────────────
 def server(input, output, session):
 
-    # =========================================================================
-    # RAHIQ — filtered_df reactive calc
-    # Branch: feat/filter-controls
-    # =========================================================================
     @reactive.calc
     def filtered_df():
         data = df.copy()
@@ -150,10 +136,6 @@ def server(input, output, session):
             data = data[data["playlist_genre"] == input.genre_filter()]
         return data
 
-    # =========================================================================
-    # RAHIQ — Reset all filters when button is clicked
-    # Branch: feat/filter-controls
-    # =========================================================================
     @reactive.effect
     @reactive.event(input.reset_all)
     def _reset_filters():
@@ -166,10 +148,6 @@ def server(input, output, session):
         ui.update_slider("popularity", value=[0, 100])
         ui.update_select("genre_filter", selected="All")
 
-    # =========================================================================
-    # JOSE — KPI render functions
-    # Branch: feat/kpi-layout
-    # =========================================================================
     @render.text
     def kpi_count():
         return f"{len(filtered_df()):,} songs"
@@ -188,10 +166,6 @@ def server(input, output, session):
             return "—"
         return f"{data['danceability'].mean():.2f} / 1.0"
 
-    # =========================================================================
-    # NGUYEN — Mood Map render function
-    # Branch: feat/mood-map
-    # =========================================================================
     @render.plot
     def plot_mood_map():
         data = filtered_df()
@@ -235,11 +209,6 @@ def server(input, output, session):
         fig.tight_layout()
         return fig
 
-    # =========================================================================
-    # SHUHANG — Results Table and Top Genres render functions
-    # Branch: feat/tables
-    # Results table uses conditional row styling to highlight popular songs (>70)
-    # =========================================================================
     @render.data_frame
     def tbl_results():
         data = filtered_df()[
