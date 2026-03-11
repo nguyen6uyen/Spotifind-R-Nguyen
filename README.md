@@ -6,13 +6,11 @@ Spotifind is a dashboard that lets users search for music using Spotify's audio 
 
 ![til](./img/demo.gif)
 
-The main dashboard can be accessed [here](https://019c9734-80f7-7726-68c1-3f657d071b93.share.connect.posit.cloud/)
+The main dashboard can be accessed [here](https://019cd979-0869-b30b-4ea7-3d34f429975f.share.connect.posit.cloud/)
 
 ## **Contributors**
 
 Rahiq Raees, Nguyen Nguyen, Shuhang Li, Jose Davila
-
-As the dashboard is being developed, a live preview for developers can be accessed [here](https://019c9738-9c84-097d-6189-117642c8821f.share.connect.posit.cloud/)
 
 If you are interested in contributing to this dashboard, please review the [CONTRIBUTING.md](CONTRIBUTING.md) document for more information.
 
