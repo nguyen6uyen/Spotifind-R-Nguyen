@@ -43,7 +43,7 @@ install.packages(c("shiny", "bslib", "dplyr", "ggplot2"))
 6.  Run the app locally with:
 
 ``` bash
-shiny::runApp("app.R")
+shiny::runApp("app.R") # -> http://127.0.0.1:5422/
 ```
 
 7. Submit a pull request with a clear description of your changes
