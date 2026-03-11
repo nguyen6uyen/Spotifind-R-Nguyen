@@ -19,11 +19,11 @@ There are many ways to contribute, including:
 2.  Clone the fork locally using:
 
 ``` bash
-git clone git@github.com:UBC-MDS/DSCI-532_2026_37_Spotifind.git
+git clone git@github.com:nguyen6uyen/Spotifind-R-Nguyen.git
 ```
 Then please cd into the root of the repo by:
 ```bash
-cd DSCI-532_2026_37_Spotifind
+cd Spotifind-R-Nguyen
 ```
 
 3.  Open R on terminal
